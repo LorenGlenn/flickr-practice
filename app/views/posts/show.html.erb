@@ -1,0 +1,14 @@
+<h1><%= @post.title %></h1> <small> <%= current_user.user_name %> <%= time_ago_in_words(@post.created_at) %> ago</small>
+<br> <%=image_tag @post.photo.url  %>
+
+
+<h3> <%= link_to 'Tag this photo!', new_post_tag_path(@post) %> </h3>
+<%= render 'tags/form' %>
+
+<% if @post.tags.any? %>
+  <% @post.tags.each do |t| %>
+    <%= t.name %>
+  <% end %>
+  <% else %>
+    No Tags
+  <% end %>
